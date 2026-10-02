@@ -1,4 +1,4 @@
-# Q-Learning 与 SARSA 简明对比（表格版）
+# Q-Learning 与 SARSA 简明对比
 
 两者都在反复做同一件事：执行动作，观察奖励，再修正这个动作的价值。**核心差别是：估计"下一步的价值"时，Q-Learning 取最大 Q 值，SARSA 取下一步实际选中动作的 Q 值。**
 
@@ -98,7 +98,7 @@ $$
 \underbrace{s}_{S},\quad \underbrace{a}_{A},\quad \underbrace{r}_{R},\quad \underbrace{s'}_{S},\quad \underbrace{a'}_{A}
 $$
 
-其中 $a'$ 是在下一状态中，按照当前行为策略选出的、下一步准备执行的动作。
+其中 a' 是在下一状态中，按照当前行为策略选出的、下一步准备执行的动作。
 
 1. **初始化 Q 表。** 同样可以全部设为 $0$，并在回合之间保留。
 2. **开始一个回合，得到初始状态 $s$，并选好第一个动作 $a$。** 通常使用 $\epsilon$-greedy。
@@ -175,7 +175,7 @@ $$
 Q(s,a) = 2, \qquad r = 1, \qquad \alpha = 0.1, \qquad \gamma = 0.9
 $$
 
-新状态 $s'$ 有两个动作：
+新状态 s' 有两个动作：
 
 | 下一步动作 | 当前 Q 值 |
 | --- | --- |
@@ -184,7 +184,7 @@ $$
 
 假设下一步由于探索，选中了"向右"。
 
-**Q-Learning** 仍然取最大值 $10$：
+**Q-Learning** 仍然取最大值10：
 
 $$
 y_Q = 1 + 0.9 \times 10 = 10
@@ -194,7 +194,7 @@ $$
 Q_{\text{新}}(s,a) = 2 + 0.1\,(10 - 2) = \boxed{2.8}
 $$
 
-**SARSA** 使用实际选中动作"向右"的 Q 值 $4$：
+**SARSA** 使用实际选中动作"向右"的 Q 值4：
 
 $$
 y_S = 1 + 0.9 \times 4 = 4.6
@@ -212,8 +212,6 @@ $$
 
 - **Q-Learning 是 off-policy（异策略）：** 实际选动作可以使用带探索的策略，但更新目标使用贪心策略的最大 Q 值。
 - **SARSA 是 on-policy（同策略）：** 下一动作按照当前行为策略选择，更新目标也使用这个动作的 Q 值。
-
-> 参考：<https://stanford.edu/~ashlearn/RLForFinanceBook/chapter11.pdf>
 
 ---
 
